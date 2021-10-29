@@ -11,64 +11,53 @@
         <a href="index.html">Back to main page</a>
     </p>
     <div id="container">
-        <label for="INSERT"> Add Reviews </label>
-        <form id="INSERT">
+        <label for="INSERT-review"> Add Reviews </label>
+        <form id="INSERT-review">
             <label for="customer_id"> Customer ID</label>
-            <input type="text" id="customer_id" name="INSERT" default="1">
+            <input type="text" id="customer_id" name="INSERT">
             
             <label for="game_id/name">Game ID/Name</label>
-            <input type="text" id="game_id/name" name="INSERT" default="xx">
+            <input type="text" id="game_id/name" name="INSERT">
 
             <label for="rating">Rating</label>
-            <input type="text" id="rating" name="INSERT" default="abc">
+            <input type="text" id="rating" name="INSERT">
             
              <label for="comment">Comment</label>
-            <input type="text" id="comment" name="INSERT" default="xxx">
+            <input type="text" id="comment" name="INSERT">
             
             
             <input type="submit" value="Add">
         </form>
      </div>
-      <div id="container">
-        <label for="INSERT"> Add Reviews </label>
-        <form id="INSERT">
-            <label for="customer_id"> Customer ID</label>
-            <input type="text" id="customer_id" name="INSERT" default="1">
-            
-            <label for="game_id/name">Game ID/Name</label>
-            <input type="text" id="game_id/name" name="INSERT" default="xx">
+
+     <div id="container">
+        <label for="UPDATE-review"> Update a Review </label>
+        <form id="UPDATE-review">
 
             <label for="rating">Rating</label>
-            <input type="text" id="rating" name="INSERT" default="abc">
+            <input type="text" id="rating" name="UPDATE">
             
-             <label for="comment">Comment</label>
-            <input type="text" id="comment" name="INSERT" default="xxx">
-            
+            <label for="comment">Comment</label>
+            <input type="text" id="comment" name="UPDATE"> 
             
             <input type="submit" value="Add">
         </form>
      </div>
-      <div id="container">
-        <label for="INSERT"> Add Reviews </label>
-        <form id="INSERT">
-            <label for="customer_id"> Customer ID</label>
-            <input type="text" id="customer_id" name="INSERT" default="1">
-            
-            <label for="game_id/name">Game ID/Name</label>
-            <input type="text" id="game_id/name" name="INSERT" default="xx">
 
-            <label for="rating">Rating</label>
-            <input type="text" id="rating" name="INSERT" default="abc">
+     <div id="container">
+        <label for="DELETE-review"> Delete a Review </label>
+        <form id="DELETE-review">
+
+            <label for="review-id">Review ID</label>
+            <input type="text" name="DELETE" id="review-id">
             
-             <label for="comment">Comment</label>
-            <input type="text" id="comment" name="INSERT" default="xxx">
-            
-            
-            <input type="submit" value="Add">
+            <input type="submit" value="Delete">
         </form>
      </div>
    
-   
+     <div id="table_container">
+        <p>Table To Go Here</p>
+    </div>
  
 </body>
 </html>
