@@ -57,8 +57,53 @@
         </form>
     </div>
 
-    <div id="table_container">
-        <p>Table To Go Here</p>
+    <br>
+
+    <div id="table-container">
+        <table id="games-table">
+            <tr>
+                <th>Game ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>Skyrim</td>
+                <td>19.99</td>
+                <td>Slay Dragons</td>
+            </tr>
+        </table>
+    </div>
+
+    <br><br><br>
+
+    <div id="container">
+        <label for="INSERT-game-genre"> Add a game genre </label>
+        <form id="INSERT-game-genre">
+            <label for="game-id">Game ID</label>
+            <input type="text" name="INSERT" id="game-id" placeholder="0">
+
+            <label for="genre-id">Genre ID</label>
+            <input type="text" name="INSERT" id="genre-id" placeholder="0">
+
+            <input type="submit" value="Add">
+        </form>
+    </div>
+
+    <br>
+
+    <div id="table-container">
+        <table id="game-genre-table">
+            <tr>
+                <th>Game ID</th>
+                <th>Genre ID</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>3</td>
+            </tr>
+        </table>
     </div>
 
 </body>
