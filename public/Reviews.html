@@ -14,42 +14,46 @@
         <label for="INSERT-review"> Add Reviews </label>
         <form id="INSERT-review">
             <label for="customer_id"> Customer ID</label>
-            <input type="text" id="customer_id" name="INSERT">
+            <input type="text" id="customer_id" name="INSERT" placeholder="0">
             
             <label for="game_id/name">Game ID/Name</label>
-            <input type="text" id="game_id/name" name="INSERT">
+            <input type="text" id="game_id/name" name="INSERT" placeholder="0">
 
             <label for="rating">Rating</label>
-            <input type="text" id="rating" name="INSERT">
+            <input type="text" id="rating" name="INSERT" placeholder="0-5">
             
              <label for="comment">Comment</label>
-            <input type="text" id="comment" name="INSERT">
+            <input type="text" id="comment" name="INSERT" placeholder="This game is...">
             
             
             <input type="submit" value="Add">
         </form>
      </div>
+
+     <br>
 
      <div id="container">
         <label for="UPDATE-review"> Update a Review </label>
         <form id="UPDATE-review">
 
             <label for="rating">Rating</label>
-            <input type="text" id="rating" name="UPDATE">
+            <input type="text" id="rating" name="UPDATE" placeholder="0-5">
             
             <label for="comment">Comment</label>
-            <input type="text" id="comment" name="UPDATE"> 
+            <input type="text" id="comment" name="UPDATE" placeholder="This Game is..."> 
             
-            <input type="submit" value="Add">
+            <input type="submit" value="Update">
         </form>
      </div>
+
+     <br>
 
      <div id="container">
         <label for="DELETE-review"> Delete a Review </label>
         <form id="DELETE-review">
 
             <label for="review-id">Review ID</label>
-            <input type="text" name="DELETE" id="review-id">
+            <input type="text" name="DELETE" id="review-id" placeholder="0">
             
             <input type="submit" value="Delete">
         </form>
