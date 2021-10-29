@@ -11,10 +11,17 @@
     </p>
 
     <div id="container">
-        <form>
-            <label for="INSERT">INSERT:</label>
-            <input type="text" id="INSERT" name="INSERT">
-            <input type="text" id="INSERT" name=
+        <label for="INSERT"> Add a Sale </label>
+        <form id="INSERT">
+            <label for="sale_price">Price</label>
+            <input type="text" id="sale_price" name="INSERT" default="19.99">
+            <label for="customer_id">Customer ID</label>
+            <input type="text" id="customer_id" name="INSERT" default="34">
+
+            <label for="game_id">Game ID</label>
+            <input type="text" id="game_id" name="INSERT" default="12">
+
+            <input type="submit" value="Submit">
         </form>
     </div>
 
