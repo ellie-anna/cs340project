@@ -60,9 +60,23 @@ a:hover{
     color:#548687;
 }
 
+#forms{
+
+    width: 34vmax;
+    float: left;
+
+}
+
+#tables{
+
+    width: 65vmax;
+    float: left;
+}
+
 #container{
     
     display: flex;
+    width: 30vmax;
     background-color: white;
     margin: 5px;
     padding: 20px 20px 20px 20px;
@@ -70,12 +84,32 @@ a:hover{
     border-color: black;
     border-radius: 10px;
     box-shadow: 2px 2px 5px  #8FBC94;
+    flex-wrap: wrap;
 }
 
-#INSERT-customer{
+#table-container{
+
+    display: inline-block;
+    width: 60vmax;
+    background-color: white;
+    margin: 5px;
+    padding: 20px 20px 20px 20px;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px  #8FBC94;
+    
+}
+
+.action-label{
 
     flex-basis: 100%;
 
+}
+
+label{
+
+    padding: 5px 5px 5px 5px;
 }
 
 /*Colors
