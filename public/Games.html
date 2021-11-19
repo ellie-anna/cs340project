@@ -17,116 +17,116 @@
         </div>
      </header>
 
-    <div id="container">
-        <label class="action-label" for="games-search">Search for a Game</label>
-        <input type="text" name="SEARCH" id="games-search" placeholder="...">
+     <div id="content">
+        <div id="forms">
+            <div id="container">
+                <label class="action-label" for="games-search">Search for a Game</label>
+                <input type="text" name="SEARCH" id="games-search" placeholder="...">
 
-        <input type="submit" value="Search">
-    </div>
+                <input type="submit" value="Search">
+            </div>
 
-    <br>
+            <br>
+            
+            <div id="container">
+                <label class="action-label" for="INSERT-game"> Add a game </label>
+                <form id="INSERT-game">
+                    <label for="game-name">Name</label>
+                    <input type="text" name="INSERT" id="game-name" placeholder="Borderlands">
+
+                    <label for="game-price">Price</label>
+                    <input type="text" name="INSERT" id="game-price" placeholder="1.00">
+
+                    <label for="game-description">Description</label>
+                    <input type="text" name="INSERT" id="game-description" placeholder="This game is...">
+
+                    <input type="submit" value="Add">
+                </form>
+            </div>
+
+            <br>
+
+            <div id="container">
+                <label class="action-label" for="UPDATE-game"> Update a game </label>
+                <form id="UPDATE-game">
+                    <label for="game-id">Game ID</label>
+                    <input type="text" name="UPDATE" id="game-id" placeholder="0">
+
+                    <label for="game-name">Name</label>
+                    <input type="text" name="UPDATE" id="game-name" placeholder="Monster Hunter">
+
+                    <label for="game-price">Price</label>
+                    <input type="text" name="UPDATE" id="game-price" placeholder="1.00">
+
+                    <label for="game-description">Description</label>
+                    <input type="text" name="UPDATE" id="game-description" placeholder="This game is...">
+
+                    <input type="submit" value="Update">
+                </form>
+            </div>
+
+            <br>
+
+            <div id="container">
+                <label class="action-label" for="DELETE-game"> Delete a Game </label>
+                <form id="DELETE-game">
+
+                    <label for="game-id">Game ID</label>
+                    <input type="text" name="DELETE" id="game-id" placeholder="0">
+                    
+                    
+                    
+                    <input type="submit" value="Delete">
+                </form>
+            </div>
+
+            <br>
+
+            <div id="container">
+                <label class="action-label" for="INSERT-game-genre"> Add a game genre </label>
+                <form id="INSERT-game-genre">
+                    <label for="game-id">Game ID</label>
+                    <input type="text" name="INSERT" id="game-id" placeholder="0">
+        
+                    <label for="genre-id">Genre ID</label>
+                    <input type="text" name="INSERT" id="genre-id" placeholder="0">
+        
+                    <input type="submit" value="Add">
+                </form>
+            </div>
+        </div>
     
-    <div id="container">
-        <label class="action-label" for="INSERT-game"> Add a game </label>
-        <form id="INSERT-game">
-            <label for="game-name">Name</label>
-            <input type="text" name="INSERT" id="game-name" placeholder="Borderlands">
+        <div id="tables">
+            <div id="table-container">
+                <table id="games-table">
+                    <tr>
+                        <th>Game ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>Skyrim</td>
+                        <td>19.99</td>
+                        <td>Slay Dragons</td>
+                    </tr>
+                </table>
+            </div>
 
-            <label for="game-price">Price</label>
-            <input type="text" name="INSERT" id="game-price" placeholder="1.00">
-
-            <label for="game-description">Description</label>
-            <input type="text" name="INSERT" id="game-description" placeholder="This game is...">
-
-            <input type="submit" value="Add">
-        </form>
-    </div>
-
-    <br>
-
-    <div id="container">
-        <label class="action-label" for="UPDATE-game"> Update a game </label>
-        <form id="UPDATE-game">
-            <label for="game-id">Game ID</label>
-            <input type="text" name="UPDATE" id="game-id" placeholder="0">
-
-            <label for="game-name">Name</label>
-            <input type="text" name="UPDATE" id="game-name" placeholder="Monster Hunter">
-
-            <label for="game-price">Price</label>
-            <input type="text" name="UPDATE" id="game-price" placeholder="1.00">
-
-            <label for="game-description">Description</label>
-            <input type="text" name="UPDATE" id="game-description" placeholder="This game is...">
-
-            <input type="submit" value="Update">
-        </form>
-    </div>
-
-    <br>
-     <br>
-
-     <div id="container">
-        <label for="DELETE-game"> Delete a Game </label>
-        <form id="DELETE-game">
-
-            <label for="game-id">Game ID</label>
-            <input type="text" name="DELETE" id="game-id" placeholder="0">
-            
-            
-            
-            <input type="submit" value="Delete">
-        </form>
-     </div>
-
-     <br>
-
-    <div id="table-container">
-        <table id="games-table">
-            <tr>
-                <th>Game ID</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Description</th>
-            </tr>
-            <tr>
-                <td>0</td>
-                <td>Skyrim</td>
-                <td>19.99</td>
-                <td>Slay Dragons</td>
-            </tr>
-        </table>
-    </div>
-
-    <br><br><br>
-
-    <div id="container">
-        <label class="action-label" for="INSERT-game-genre"> Add a game genre </label>
-        <form id="INSERT-game-genre">
-            <label for="game-id">Game ID</label>
-            <input type="text" name="INSERT" id="game-id" placeholder="0">
-
-            <label for="genre-id">Genre ID</label>
-            <input type="text" name="INSERT" id="genre-id" placeholder="0">
-
-            <input type="submit" value="Add">
-        </form>
-    </div>
-
-    <br>
-    
-
-    <div id="table-container">
-        <table id="game-genre-table">
-            <tr>
-                <th>Game ID</th>
-                <th>Genre ID</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>3</td>
-            </tr>
-        </table>
+            <div id="table-container">
+                <table id="game-genre-table">
+                    <tr>
+                        <th>Game ID</th>
+                        <th>Genre ID</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>3</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 
 </body>
