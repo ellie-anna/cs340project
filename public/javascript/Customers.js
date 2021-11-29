@@ -6,15 +6,17 @@ var first_name = "";
 var last_name = "";
 var address = "";
 
+var form = document.getElementById("INSERT-customer");
 var insertsubmit = document.getElementById("insertbutton");
 
-insertsubmit.addEventListener("click", insertSubmit);
+insertsubmit.addEventListener("submit", function (event) {
 
-function insertSubmit(){
+    email = form.elements[email].value;
+    password = form.elements[password].value;
+    first_name = form.elements[first_name].value;
+    last_name = form.elements[last_name].value;
+    address = form.elements[address].value;
 
-    email = document.getElementById("email").value;
-    password = document.getElementById("password").value;
-    first_name = document.getElementById("first_name").value;
-    last_name = document.getElementById("last_name").value;
-    address = document.getElementById("address").value;
-}
+    console.log(email, password, first_name, last_name, address);
+});
+
