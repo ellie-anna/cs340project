@@ -69,7 +69,7 @@ a:hover{
 
 #tables{
 
-    width: 65vmax;
+    width: 60vmax;
     float: left;
 }
 
@@ -90,7 +90,7 @@ a:hover{
 #table-container{
 
     display: inline-block;
-    width: 60vmax;
+    width: 55vmax;
     height: 35vmin;
     background-color: white;
     margin: 5px;

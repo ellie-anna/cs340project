@@ -24,17 +24,17 @@ PORT        = 33489;                 // Set a port number at the top so it's eas
 // app.js
 
 app.get('/', function(req, res)
-    {
-        res.render('index');
-    });
+//    {
+//        res.render('index');
+//    });
 
-app.get('/Customers', function(req, res)
+//app.get('/Customers', function(req, res)
     {  
-        let query1 = "SELECT * FROM Customers;";               // Define our query
+        let query1 = "SELECT * FROM Games;";               // Define our query
 
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
-            res.render('Customers', {data: rows});                  // Render the index.hbs file, and also send the renderer
+            res.render('Games', {data: rows});                  // Render the index.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 /*

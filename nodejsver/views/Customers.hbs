@@ -1,3 +1,29 @@
+{{> header}}
+
+<div id="forms">
+    <div id="container">
+        <label class="action-label" for="INSERT-customer"> Add a Customers </label>
+        <form id="INSERT-customer" method="post">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="INSERT" placeholder="none@none.com">
+
+            <label for="password">Password</label>
+            <input type="text" id="password" name="INSERT" placeholder="ehA81&a8!">
+                    
+            <label for="first_name">First name</label>
+            <input type="text" id="first_name" name="INSERT" placeholder="Jane">
+                    
+            <label for="last_name">Last name</label>
+            <input type="text" id="last_name" name="INSERT" placeholder="Doe">
+                    
+            <label for="address">Address</label>
+            <input type="text" id="address" name="INSERT" placeholder="123 Main St. Portland Oregon">
+
+            <input type="submit" value="Add" id="insertbutton">
+        </form>
+    </div>
+</div>
+
 <table id="customer-table">
     <thead>
         <tr>
