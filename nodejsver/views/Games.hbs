@@ -13,15 +13,15 @@
             
             <div id="container">
                 <label class="action-label" for="INSERT-game"> Add a game </label>
-                <form id="INSERT-game">
-                    <label for="game-name">Name</label>
-                    <input type="text" name="INSERT" id="game-name" placeholder="Borderlands">
+                <form id="INSERT-game" method="post">
+                    <label for="INSERT-game-name">Name</label>
+                    <input type="text" name="INSERT" id="INSERT-game-name" placeholder="Borderlands">
 
-                    <label for="game-price">Price</label>
-                    <input type="text" name="INSERT" id="game-price" placeholder="1.00">
+                    <label for="INSERT-game-price">Price</label>
+                    <input type="text" name="INSERT" id="INSERT-game-price" placeholder="1.00">
 
-                    <label for="game-description">Description</label>
-                    <input type="text" name="INSERT" id="game-description" placeholder="This game is...">
+                    <label for="INSERT-game-description">Description</label>
+                    <input type="text" name="INSERT" id="INSERT-game-description" placeholder="This game is...">
 
                     <input type="submit" value="Add">
                 </form>
@@ -31,18 +31,18 @@
 
             <div id="container">
                 <label class="action-label" for="UPDATE-game"> Update a game </label>
-                <form id="UPDATE-game">
-                    <label for="game-id">Game ID</label>
-                    <input type="text" name="UPDATE" id="game-id" placeholder="0">
+                <form id="UPDATE-game" method="post">
+                    <label for="UPDATE-game-id">Game ID</label>
+                    <input type="text" name="UPDATE" id="UPDATE-game-id" placeholder="0">
 
-                    <label for="game-name">Name</label>
-                    <input type="text" name="UPDATE" id="game-name" placeholder="Monster Hunter">
+                    <label for="UPDATE-game-name">Name</label>
+                    <input type="text" name="UPDATE" id="UPDATE-game-name" placeholder="Monster Hunter">
 
-                    <label for="game-price">Price</label>
-                    <input type="text" name="UPDATE" id="game-price" placeholder="1.00">
+                    <label for="UPDATE-game-price">Price</label>
+                    <input type="text" name="UPDATE" id="UPDATE-game-price" placeholder="1.00">
 
-                    <label for="game-description">Description</label>
-                    <input type="text" name="UPDATE" id="game-description" placeholder="This game is...">
+                    <label for="UPDATE-game-description">Description</label>
+                    <input type="text" name="UPDATE" id="UPDATE-game-description" placeholder="This game is...">
 
                     <input type="submit" value="Update">
                 </form>
@@ -52,12 +52,10 @@
 
             <div id="container">
                 <label class="action-label" for="DELETE-game"> Delete a Game </label>
-                <form id="DELETE-game">
+                <form id="DELETE-game" method="post">
 
-                    <label for="game-id">Game ID</label>
-                    <input type="text" name="DELETE" id="game-id" placeholder="0">
-                    
-                    
+                    <label for="DELETE-game-id">Game ID</label>
+                    <input type="text" name="DELETE" id="DELETE-game-id" placeholder="0">
                     
                     <input type="submit" value="Delete">
                 </form>
