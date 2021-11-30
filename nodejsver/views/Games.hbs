@@ -13,7 +13,7 @@
             
             <div id="container">
                 <label class="action-label" for="INSERT-game"> Add a game </label>
-                <form id="INSERT-game" method="post">
+                <form id="INSERT-game" method="post" action="/insert-game-form" onsubmit="return false">
                     <label for="INSERT-game-name">Name</label>
                     <input type="text" name="INSERT" id="INSERT-game-name" placeholder="Borderlands">
 
@@ -32,9 +32,6 @@
             <div id="container">
                 <label class="action-label" for="UPDATE-game"> Update a game </label>
                 <form id="UPDATE-game" method="post">
-                    <label for="UPDATE-game-id">Game ID</label>
-                    <input type="text" name="UPDATE" id="UPDATE-game-id" placeholder="0">
-
                     <label for="UPDATE-game-name">Name</label>
                     <input type="text" name="UPDATE" id="UPDATE-game-name" placeholder="Monster Hunter">
 
@@ -132,3 +129,5 @@
 
         
     </div>
+
+    <script src="./js/Games.js"></script>

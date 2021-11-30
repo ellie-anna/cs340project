@@ -36,7 +36,41 @@ app.get('/', function(req, res)
 
             res.render('Games', {data: rows});                  // Render the index.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
-    });                                                         // received back from the query
+});                                                         // received back from the query
+
+// From nodejs-starter-app
+app.post('/insert-game-form', function(req, res){
+
+    let data = req.body;
+
+    let price = parseFloat(data.Price)
+    if (isNaN(price)){
+        price = 'NULL'
+    }
+
+    query1 = `INSERT INTO Games (GameName, Price, Description) VALUES ('${data.GameName}', '${price}', '${data.Description}')`
+    //console.log(query1);
+    db.pool.query(query1, function(error, rows, fields){
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else{
+            query2 = `SELECT * FROM Games;`;
+            db.pool.query(query2, function(error, rows, fields){
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else{
+                    res.send(rows);
+                }
+            })
+        }
+    })
+
+});
+
 /*
     LISTENER
 */

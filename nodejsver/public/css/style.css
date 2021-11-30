@@ -60,6 +60,10 @@ a:hover{
     color:#56445D;
 }
 
+input{
+    display:block;
+}
+
 #forms{
 
     width: 34vmax;

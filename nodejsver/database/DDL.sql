@@ -32,7 +32,7 @@ CREATE TABLE `Games` (
 
 
 CREATE TABLE `Genres` (
-    `GenreID` int(11) NOT NULL,
+    `GenreID` int(11) NOT NULL AUTO_INCREMENT,
     `GenreName` varchar(256) NOT NULL,
 	`Description` text,
     PRIMARY KEY (`GenreID`)
@@ -72,14 +72,20 @@ CREATE TABLE `Genres_Games` (
 
 -- Sample Data
 
-INSERT INTO Reviews VALUES(1,2,3,"Bad",1),(2,1,6,"mid",1),(3,2,8,"Good",2);
+INSERT INTO Customers (Email, Password, Fname, Lname, Address)
+VALUES ("XXX@gmail.com","123498765","le",'wu',"1 world street"),("xxx@qq.com","123498765","kobe","bean","111 love street");
 
-INSERT INTO Customers VALUES (1,"XXX@gmail.com","123498765","le",'wu',"1 world street"),(2,"xxx@qq.com","123498765","kobe","bean","111 love street");
+INSERT INTO Games (GameName, Price, Description)
+VALUES ("CSGO",19.99,"This game so good"),("League of L",10.99,"Good 5vs5 gmae");
 
-INSERT INTO Sales VALUES(1,19.99,1,1),(2,10.99,2,2);
+INSERT INTO Reviews (GameID, Rating, Comment, CustomerID)
+VALUES(2,3,"Bad",1),(1,6,"mid",1),(2,8,"Good",2);
 
-INSERT INTO Games VALUES (1,"CSGO",19.99,"This game so good"),(2,"League of L",10.99,"Good 5vs5 gmae");
+INSERT INTO Sales (SalePrice, CustomerID, GameID)
+VALUES(19.99,1,1),(10.99,2,2);
 
-INSERT INTO Genres VALUES (1, "First-Person-Shooter", "Shoot things in first person"),(2,"MOBA","Arena based 5v5 battles");
+INSERT INTO Genres (GenreName, Description)
+VALUES ("First-Person-Shooter", "Shoot things in first person"),("MOBA","Arena based 5v5 battles");
 
-INSERT INTO Genres_Games VALUES (1, 1),(2,2);
+INSERT INTO Genres_Games
+VALUES (1, 1),(2,2);
