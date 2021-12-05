@@ -22,22 +22,22 @@ app.get('/', function (req, res) {
     let sql;
     let gameName = req.query.gameName;
     if (gameName === undefined){
-        sql = "SELECT * FROM games;";
+        sql = `SELECT * FROM Games;`;
     }else{
-        sql = `SELECT * FROM games WHERE GameName LIKE "${gameName}%"`;
+        sql = `SELECT * FROM Games WHERE GameName LIKE "${gameName}%"`;
     }
 
   queryAll(res,sql);
 });
 
-function queryAll(res, sql="SELECT * FROM games;"){
+function queryAll(res, sql=`SELECT * FROM Games;`){
   db.pool.query(sql, function (error, rows) {
     if (error) {
       console.log(error);
       res.sendStatus(400);
     } else {
-      db.pool.query('select * from genres', function (error1, genreRow) {
-        db.pool.query('select GameName,GenreName from genres_games a JOIN games b ON a.GameID=b.GameID JOIN genres c ON a.GenreID=c.GenreID', function (error3, genreGameRow) {
+      db.pool.query(`select * from Genres`, function (error1, genreRow) {
+        db.pool.query(`select GameName,GenreName from Genres_Games a JOIN Games b ON a.GameID=b.GameID JOIN Genres c ON a.GenreID=c.GenreID`, function (error3, genreGameRow) {
           res.render('Games', {
             data: rows,
             dataStr: JSON.stringify(rows),
@@ -59,7 +59,7 @@ app.post('/update-game', function (req, res) {
     price = 'NULL'
   }
 
-  let sql = `update games set GameName='${data.GameName}', Price=${price}, Description='${data.Description}' where GameID = '${data.GameID}'`
+  let sql = `update Games set GameName='${data.GameName}', Price=${price}, Description='${data.Description}' where GameID = '${data.GameID}'`
 
   db.pool.query(sql, function (error, rows, fields) {
     if (error) {
@@ -74,7 +74,7 @@ app.post('/update-game', function (req, res) {
 app.post('/delete-game', function (req, res) {
   let data = req.body;
 
-  let sql = `delete from games where GameID = '${data.GameID}'`
+  let sql = `delete from Games where GameID = '${data.GameID}'`
 
   db.pool.query(sql, function (error, rows, fields) {
     if (error) {
