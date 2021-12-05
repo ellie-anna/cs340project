@@ -1,0 +1,101 @@
+{{> header}}
+
+<div id="content">
+    <div id="forms">
+        <div class="container">
+            <label class="action-label" for="INSERT-review"> Add Reviews </label>
+            <form id="INSERT-review" method="post" action="/insert-review-form">
+                <label for="customer_id">Customer</label>
+                <select name="CustomerID">
+                    <option value="">Select a Customer</option>
+                    {{#each data.customers}}
+                    <option value="{{this.CustomerID}}">{{this.Lname}} {{this.Fname}}</option>
+                    {{/each}}
+                </select>
+                <label for="game_id/name">Game</label>
+                <select name="GameID">
+                    <option value="">Select a Game</option>
+                    {{#each data.games}}
+                    <option value="{{this.GameID}}">{{this.GameName}}</option>
+                    {{/each}}
+                </select>
+
+                <label for="rating">Rating</label>
+                <input type="text" id="rating" name="Rating" placeholder="0-5">
+
+                <label for="comment">Comment</label>
+                <input type="text" id="comment" name="Comment" placeholder="This game is...">
+
+                <input type="submit" value="Add">
+            </form>
+        </div>
+
+        <br>
+
+        <div class="container">
+            <label class="action-label" for="UPDATE-review"> Update a Review </label>
+            <form id="UPDATE-review" method="post" action="/update-review-form">
+                <label for="review_id">Review ID</label>
+                <select name="ReviewID">
+                    <option value="">Select a Review</option>
+                    {{#each data.reviews}}
+                    <option value="{{this.ReviewID}}">{{this.ReviewID}}</option>
+                    {{/each}}
+                </select>
+
+                <label for="rating">Rating</label>
+                <input type="text" id="rating" name="Rating" placeholder="0-5">
+
+                <label for="comment">Comment</label>
+                <input type="text" id="comment" name="Comment" placeholder="This Game is...">
+
+                <input type="submit" value="Update">
+            </form>
+        </div>
+
+        <br>
+
+        <div class="container">
+            <label class="action-label" for="DELETE-review"> Delete a Review </label>
+            <form id="DELETE-review" method="post" action="/delete-review-form">
+
+                <label for="review-id">Review ID</label>
+                <select name="ReviewID">
+                    <option value="">Select a Review</option>
+                    {{#each data.reviews}}
+                    <option value="{{this.ReviewID}}">{{this.ReviewID}}</option>
+                    {{/each}}
+                </select>
+
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+    </div>
+
+
+    <div id="tables">
+        <div id="table-container">
+            <table id="reviews-table">
+                <tr>
+                    <th>Review ID</th>
+                    <th>Game ID</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                    <th>Customer ID</th>
+                </tr>
+                <tr>
+                    {{#each data.reviews}}
+                <tr>
+                    <td>{{this.ReviewID}}</td>
+                    <td>{{this.GameID}}</td>
+                    <td>{{this.Rating}}</td>
+                    <td>{{this.Comment}}</td>
+                    <td>{{this.CustomerID}}</td>
+                </tr>
+                {{/each}}
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="./js/Review.js"></script>

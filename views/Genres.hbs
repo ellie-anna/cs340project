@@ -1,0 +1,40 @@
+{{> header}}
+
+<div id="content">
+    <div id="forms">
+        <div class="container">
+            <label class="action-label" for="INSERT-genre"> Add a genre </label>
+            <form id="INSERT-genre" method="post" action="/insert-genre-form">
+                <label for="genre-name">Name</label>
+                <input type="text" id="genre-name" name="GenreName" placeholder="Action">
+
+                <label for="genre-description">description</label>
+                <input type="text" id="genre-description" name="Description" placeholder="This genre is...">
+
+                <input type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+
+    <div id="tables">
+        <div id="table-container">
+            <table id="genres-table">
+                <tr>
+                    <th>Genre ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+                    {{#each data}}
+                    <tr>
+                        <td>{{this.GenreID}}</td>
+                        <td>{{this.GenreName}}</td>
+                        <td>{{this.Description}}</td>
+                    </tr>
+                    {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="./js/Gender.js"></script>

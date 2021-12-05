@@ -1,0 +1,142 @@
+{{> header}}
+
+<div id="content">
+    <div id="forms">
+        <div class="container">
+            <label class="action-label" for="games-search">Search for a Game</label>
+            <input type="text" name="SEARCH" id="game-name" placeholder="...">
+
+            <input type="submit" value="Search" id="search-button">
+        </div>
+
+
+        <div class="container">
+            <label class="action-label" for="INSERT-game"> Add a game </label>
+            <form id="INSERT-game" method="post" action="/insert-game-form" onsubmit="return false">
+                <label for="INSERT-game-name">Name</label>
+                <input type="text" name="INSERT" id="INSERT-game-name" placeholder="Borderlands">
+
+                <label for="INSERT-game-price">Price</label>
+                <input type="text" name="INSERT" id="INSERT-game-price" placeholder="1.00">
+
+                <label for="INSERT-game-description">Description</label>
+                <input type="text" name="INSERT" id="INSERT-game-description" placeholder="This game is...">
+
+                <input type="submit" value="Add">
+            </form>
+        </div>
+
+        <div class="container">
+            <label class="action-label" for="UPDATE-game"> Update a game </label>
+            <form id="UPDATE-game" method="post" action="/update-game-form">
+
+                <label for="UPDATE-game-id">Game</label>
+                <select name="GameID">
+                    <option value="">Select a Game</option>
+                    {{#each data.games}}
+                    <option value="{{this.GameID}}">{{this.GameName}}</option>
+                    {{/each}}
+                </select>
+                <label for="UPDATE-game-name">Name</label>
+                <input type="text" name="GameName" id="UPDATE-game-name" placeholder="Monster Hunter">
+
+                <label for="UPDATE-game-price">Price</label>
+                <input type="text" name="Price" id="UPDATE-game-price" placeholder="1.00">
+
+                <label for="UPDATE-game-description">Description</label>
+                <input type="text" name="Description" id="UPDATE-game-description" placeholder="This game is...">
+
+                <input type="submit" value="Update">
+            </form>
+        </div>
+
+        <div class="container">
+            <label class="action-label" for="DELETE-game"> Delete a Game </label>
+            <form id="DELETE-game" method="post" action="/delete-game-form">
+
+                <label for="DELETE-game-id">Game</label>
+                <select name="GameID">
+                    <option value="">Select a Game</option>
+                    {{#each data.games}}
+                    <option value="{{this.GameID}}">{{this.GameName}}</option>
+                    {{/each}}
+                </select>
+      
+
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+
+        <div class="container">
+            <label class="action-label" for="INSERT-game-genre"> Add a game genre </label>
+            <form id="INSERT-game-genre" method="post" action="/insert-game-genre">
+                <label for="game-id">Game</label>
+                <select name="GameID">
+                    <option value="">Select a Game</option>
+                    {{#each data.games}}
+                    <option value="{{this.GameID}}">{{this.GameName}}</option>
+                    {{/each}}
+                </select>
+    
+
+                <label for="genre-id">Genre</label>
+                <select name="GenreID">
+                    <option value="">Select a Genre</option>
+                    {{#each data.genres}}
+                    <option value="{{this.GenreID}}">{{this.GenreName}}</option>
+                    {{/each}}
+                </select>
+       
+                <input type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+
+    <div id="tables">
+        <div id="table-container">
+            <table id="games-table">
+                <thead>
+                    <tr>
+                        {{#each data.games.[0]}}
+                        <th>
+                            {{@key}}
+                        </th>
+                        {{/each}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each data.games}}
+                    <tr>
+                        <td>{{this.GameID}}</td>
+                        <td>{{this.GameName}}</td>
+                        <td>{{this.Price}}</td>
+                        <td>{{this.Description}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <div id="table-container">
+            <table id="game-genre-table">
+                <tr>
+                    {{#each data.gg.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                </tr>
+                <tr>
+                    {{#each data.gg}}
+                <tr>
+                    <td>{{this.GameID}}</td>
+                    <td>{{this.GenreID}}</td>
+                </tr>
+                {{/each}}
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="./js/Games.js"></script>

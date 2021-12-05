@@ -24,7 +24,7 @@ insertGameForm.addEventListener('submit', function(e) {
 
     xhttp.onreadystatechange = () => {
         if(xhttp.readyState == 4 && xhttp.status == 200) {
-            
+
             addRowToTable(xhttp.response);
 
             inputGameName.value = '';
@@ -67,3 +67,24 @@ addRowToTable = (data) => {
 
     currentTable.appendChild(row);
 }
+
+function fillUpdateForm(GameID, list) {
+    let choose = list.filter(o=>o.GameID == GameID)[0];
+    document.getElementById('updateGameID').value = choose.GameID;
+    document.getElementById('updateGameName').value = choose.GameName;
+    document.getElementById('updatePrice').value = choose.Price;
+    document.getElementById('updateDescription').value = choose.Description;
+}
+
+function fillDeleteForm(GameID, list) {
+    document.getElementById('deleteGameID').value = GameID;
+}
+
+function fillRefGameID(GameID, list) {
+    document.getElementById('refGameID').value = GameID;
+}
+
+function fillRefGenreID(GenreID, list) {
+    document.getElementById('refGenreID').value = GenreID;
+}
+

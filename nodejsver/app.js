@@ -5,116 +5,157 @@
     SETUP
 */
 const path = require('path');
-var db = require('./database/db-connector')
-var express = require('express');   // We are using the express library for the web server
-var app = express();            // We need to instantiate an express object to interact with the server in our code
+var db = require('./database/db-connector').pool
+var dbSync = require('./database/db-connector').pool.promise()
+var express = require('express'); // We are using the express library for the web server
+var app = express(); // We need to instantiate an express object to interact with the server in our code
 app.use(express.json())
-app.use(express.urlencoded({extended: true}))
-const {engine} = require('express-handlebars');
-var exphbs = require('express-handlebars');     // Import express-handlebars
-app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
-app.set('view engine', '.hbs');                 // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
+app.use(express.urlencoded({
+  extended: true
+}))
+const {
+  engine
+} = require('express-handlebars');
+var exphbs = require('express-handlebars'); // Import express-handlebars
+app.engine('.hbs', engine({
+  extname: ".hbs"
+})); // Create an instance of the handlebars engine to process templates
+app.set('view engine', '.hbs'); // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
 app.use(express.static(path.join(__dirname, '/public')));
 
-PORT = 33489;                 // Set a port number at the top so it's easy to change in the future
+PORT = 33489; // Set a port number at the top so it's easy to change in the future
+
+/*
+    ROUTES
+*/
+// app.js
 
 app.get('/', function (req, res) {
-    res.render('index');
+  res.render('index'); // Render the index.hbs file, and also send the renderer
 });
 
+app.get('/Games', async function (req, res) {
+  let query1 = "SELECT * FROM Games;"; // Define our query
+
+  let genreData = await dbSync.query("select * from genres")
+  let gameData = await dbSync.query("select * from games")
+  let ggData = await dbSync.query("select * from genres_games")
+
+  res.render('Games', {
+    data: {
+      games: gameData[0],
+      genres: genreData[0],
+      gg: ggData[0]
+    }
+  }); // Render the index.hbs file, and also send the renderer
+  // an object where 'data' is equal to the 'rows' we
+});
+
+app.post('/update-game-form', function (req, res) {
+  // Capture the incoming data and parse it back to a JS object
+  let data = req.body;
+
+  // Create the query and run it on the database
+  const query1 = `update games set GameName = "${data.GameName}", Description = "${data.Description}", Price = "${data.Price}" where GameID = ${data.GameID}`;
+  db.query(query1, function (error, rows, fields) {
+
+    // Check to see if there was an error
+    if (error) {
+
+      // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+      console.log(error)
+      res.sendStatus(400);
+    }
+
+    // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+    // presents it on the screen
+    else {
+      res.redirect('/Games');
+    }
+  })
+})
+
+app.post('/delete-game-form', function (req, res) {
+  // Capture the incoming data and parse it back to a JS object
+  let data = req.body;
+
+  // Create the query and run it on the database
+  const query1 = `delete from games where GameID = ${data.GameID}`;
+  db.query(query1, function (error, rows, fields) {
+
+    // Check to see if there was an error
+    if (error) {
+
+      // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+      console.log(error)
+      res.sendStatus(400);
+    }
+
+    // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+    // presents it on the screen
+    else {
+      res.redirect('/Games');
+    }
+  })
+})
+
 app.get('/Customers', function (req, res) {
-  let query1 = "SELECT * FROM Customers;";               // Define our query
+  let query1 = "SELECT * FROM Customers;"; // Define our query
 
-        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+  db.query(query1, function (error, rows, fields) { // Execute the query
 
-            res.render('Customers', {data: rows});                  // Render the index.hbs file, and also send the renderer
-        })
+    res.render('Customers', {
+      data: rows
+    }); // Render the index.hbs file, and also send the renderer
+  }) // an object where 'data' is equal to the 'rows' we
 });
 
 app.get('/Genres', function (req, res) {
-  res.render('Genres');
-});
+  let query1 = "SELECT * FROM Genres;"; // Define our query
 
-app.get('/Sales', function (req, res) {
-  res.render('Sales');
-});
+  db.query(query1, function (error, rows, fields) { // Execute the query
 
-app.get('/Reviews', function (req, res) {
-  res.render('Reviews');
-});
+    res.render('Genres', {
+      data: rows
+    }); // Render the index.hbs file, and also send the renderer
+  }) // an object where 'data' is equal to the 'rows' we
+}); // received back from the query
 
+app.get('/Reviews', async (req, res) => {
+  let customerData = await dbSync.query("select * from customers");
+  let gameData = await dbSync.query("select * from games");
+  let reviewData = await dbSync.query("select * from reviews");
 
-app.get('/Games', function (req, res) {
-
-  let sql;
-  let gameName = req.query.gameName;
-  if (gameName === undefined){
-      sql = `SELECT * FROM Games;`;
-  }else{
-      sql = `SELECT * FROM Games WHERE GameName LIKE "${gameName}%"`;
-  }
-
-  queryAll(res,sql);
-});
-
-function queryAll(res, sql=`SELECT * FROM Games;`){
-  db.pool.query(sql, function (error, rows) {
-    if (error) {
-      console.log(error);
-      res.sendStatus(400);
-    } else {
-      db.pool.query(`select * from Genres`, function (error1, genreRow) {
-        db.pool.query(`select GameName,GenreName from Genres_Games a JOIN Games b ON a.GameID=b.GameID JOIN Genres c ON a.GenreID=c.GenreID`, function (error3, genreGameRow) {
-          res.render('Games', {
-            data: rows,
-            dataStr: JSON.stringify(rows),
-            genreData: genreRow,
-            genreDataStr: JSON.stringify(genreRow),
-            genreGameData: genreGameRow
-          });
-        })
-      })
+  res.render('Reviews', {
+    data: {
+      customers: customerData[0],
+      games: gameData[0],
+      reviews: reviewData[0]
     }
-  })
 
-}
-
-app.post('/update-game', function (req, res) {
-  let data = req.body;
-  let price = parseFloat(data.Price)
-  if (isNaN(price)) {
-    price = 'NULL'
-  }
-
-  let sql = `update Games set GameName='${data.GameName}', Price=${price}, Description='${data.Description}' where GameID = '${data.GameID}'`
-
-  db.pool.query(sql, function (error, rows, fields) {
-    if (error) {
-      console.log(error);
-      res.sendStatus(400);
-    }else{
-      queryAll(res)
-    }
-  })
+  });
 });
 
-app.post('/delete-game', function (req, res) {
-  let data = req.body;
+app.get('/Sales', async (req, res) => {
+  let salesData = await dbSync.query("select * from sales");
+  let customerData = await dbSync.query("select * from customers");
+  let gameData = await dbSync.query("select * from games");
 
-  let sql = `delete from Games where GameID = '${data.GameID}'`
-
-  db.pool.query(sql, function (error, rows, fields) {
-    if (error) {
-      console.log(error);
-      res.sendStatus(400);
-    }else{
-      queryAll(res)
+  res.render('Sales', {
+    data: {
+      sales: salesData[0],
+      customers: customerData[0],
+      games: gameData[0]
     }
-  })
+  });
 });
 
+app.get('/index', function (req, res) {
+  res.render('index'); // Render the index.hbs file, and also send the renderer
+});
+
+// From nodejs-starter-app
 app.post('/insert-game-form', function (req, res) {
-
   let data = req.body;
 
   let price = parseFloat(data.Price)
@@ -122,15 +163,17 @@ app.post('/insert-game-form', function (req, res) {
     price = 'NULL'
   }
 
-  query1 = `INSERT INTO Games (GameName, Price, Description) VALUES ('${data.GameName}', '${price}', '${data.Description}')`
+  query1 = `INSERT INTO Games (GameName, Price, Description)
+            VALUES ('${data.GameName}', '${price}', '${data.Description}')`
   //console.log(query1);
-  db.pool.query(query1, function (error, rows, fields) {
+  db.query(query1, function (error, rows, fields) {
     if (error) {
       console.log(error);
       res.sendStatus(400);
     } else {
-      query2 = `SELECT * FROM Games;`;
-      db.pool.query(query2, function (error, rows, fields) {
+      query2 = `SELECT *
+                FROM Games;`;
+      db.query(query2, function (error, rows, fields) {
         if (error) {
           console.log(error);
           res.sendStatus(400);
@@ -143,20 +186,186 @@ app.post('/insert-game-form', function (req, res) {
 
 });
 
-app.post('/add-game-genre', function (req, res) {
+app.post('/insert-review-form', function (req, res) {
   let data = req.body;
-
-  let sql = `INSERT INTO genres_games (GameID, GenreID) VALUES ('${data.GameID}','${data.GenreID}')`;
-  db.pool.query(sql, function (error, rows, fields) {
+  query1 = `INSERT INTO reviews (GameID, CustomerID, Rating, Comment)
+              VALUES ('${data.GameID}', '${data.CustomerID}', '${data.Rating}', '${data.Comment}')`
+  db.query(query1, function (error, rows, fields) {
     if (error) {
       console.log(error);
-      res.status(400).send(error.sqlMessage)
+      res.sendStatus(400);
     } else {
-      queryAll(res);
+      query2 = `SELECT *
+                  FROM reviews;`;
+      db.query(query2, function (error, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        } else {
+          res.redirect('/Reviews');
+        }
+      })
     }
   })
+
+})
+
+app.post('/update-review-form', function (req, res) {
+  let data = req.body;
+  query1 = `UPDATE reviews
+            SET Rating = '${data.Rating}', Comment = '${data.Comment}'
+            WHERE ReviewID = '${data.ReviewID}'`
+  //console.log(query1);
+  db.query(query1, function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      query2 = `SELECT *
+                FROM reviews;`;
+      db.query(query2, function (error, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        } else {
+          res.redirect('/Reviews');
+        }
+      })
+    }
+  })
+
+})
+
+app.post('/delete-review-form', function (req, res) {
+  let data = req.body;
+  query1 = `DELETE FROM reviews
+            WHERE ReviewID = '${data.ReviewID}'`
+  //console.log(query1);
+  db.query(query1, function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      query2 = `SELECT *
+                FROM reviews;`;
+      db.query(query2, function (error, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        } else {
+          res.redirect('/Reviews');
+        }
+      })
+    }
+  })
+})
+
+app.post('/insert-sale-form', function (req, res) {
+  let data = req.body;
+  query1 = `INSERT INTO Sales (GameID, CustomerID, SalePrice)
+              VALUES ('${data.GameID}', '${data.CustomerID}', '${data.SalePrice}')`
+  //console.log(query1);
+  db.query(query1, function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      query2 = `SELECT *
+                  FROM Sales;`;
+      db.query(query2, function (error, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        } else {
+          res.redirect('/Sales');
+        }
+      })
+    }
+  })
+
+})
+
+app.post('/insert-genre-form', function (req, res) {
+  let data = req.body;
+  query1 = `INSERT INTO Genres (GenreName, Description)
+              VALUES ('${data.GenreName}', '${data.Description}')`
+  //console.log(query1);
+  db.query(query1, function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      query2 = `SELECT *
+                  FROM Genres;`;
+      db.query(query2, function (error, rows, fields) {
+        if (error) {
+          console.log(error);
+          res.sendStatus(400);
+        } else {
+          res.redirect('/Genres');
+        }
+      })
+    }
+  })
+
+})
+
+app.post('/search-game-form', function (req, res) {
+  let data = req.body;
+  let query1 = `SELECT *
+                FROM Games
+                WHERE GameName LIKE '%${data.GameName}%';`;
+  db.query(query1, function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      res.send(rows);
+    }
+  })
+})
+
+// From nodejs-starter-app
+app.post('/insert-customer-form', function (req, res) {
+
+  let data = req.body;
+
+
+  query1 = `INSERT INTO Customers (Email, Password, Fname, Lname, Address) VALUES ('${data.Email}', '${data.Password}', '${data.Fname}', '${data.Lname}', '${data.Address}')`
+  //console.log(query1);
+  db.query(query1, function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      res.redirect('/Customers');
+    }
+  })
+
 });
 
-app.listen(PORT, function () {            // This is the basic syntax for what is called the 'listener' which receives incoming requests on the specified PORT.
+// From nodejs-starter-app
+app.post('/insert-game-genre', function (req, res) {
+
+  let data = req.body;
+
+
+  query1 = `INSERT INTO genres_games(GameID, GenreID) VALUES (${data.GameID}, ${data.GenreID})`
+  //console.log(query1);
+  db.query(query1, function (error, rows, fields) {
+    if (error) {
+      console.log(error);
+      res.sendStatus(400);
+    } else {
+      res.redirect('/Games');
+    }
+  })
+
+});
+
+/*
+    LISTENER
+*/
+app.listen(PORT, function () { // This is the basic syntax for what is called the 'listener' which receives incoming requests on the specified PORT.
   console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.')
 });
