@@ -1,0 +1,56 @@
+{{> header}}
+
+<div id="content">
+    <div id="forms">
+        <div class="container">
+            <label class="action-label" for="INSERT-sale"> Add a Sale </label>
+            <form id="INSERT-sale" method="post" action="/insert-sale-form">
+                <label for="sale_price">Price</label>
+                <input type="text" id="sale_price" name="SalePrice" placeholder="1.00">
+
+                <label for="customer_id">Customer</label>
+                <select name="CustomerID">
+                    <option value="">Select a Customer</option>
+                    {{#each data.customers}}
+                    <option value="{{this.CustomerID}}">{{this.Lname}} {{this.Fname}}</option>
+                    {{/each}}
+                </select>
+
+                <label for="game_id">Game</label>
+                <select name="GameID">
+                    <option value="">Select a Game</option>
+                    {{#each data.games}}
+                    <option value="{{this.GameID}}">{{this.GameName}}</option>
+                    {{/each}}
+                </select>
+
+                <input type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+
+    <div id="tables">
+        <div id="table-container">
+            <table id="sales-table">
+                <tr>
+                    <th>Sale ID</th>
+                    <th>Sale Price</th>
+                    <th>Customer ID</th>
+                    <th>Game ID</th>
+                </tr>
+                <tr>
+                    {{#each data.sales}}
+                <tr>
+                    <td>{{this.SaleID}}</td>
+                    <td>{{this.SalePrice}}</td>
+                    <td>{{this.CustomerID}}</td>
+                    <td>{{this.GameID}}</td>
+                </tr>
+                {{/each}}
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="./js/Sales.js"></script>

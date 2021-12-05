@@ -1,0 +1,56 @@
+{{> header}}
+
+<div id="forms">
+    <div class="container">
+        <label class="action-label" for="INSERT-customer"> Add a Customers </label>
+        <form id="INSERT-customer" method="post" action="/insert-customer-form">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="Email" placeholder="none@none.com">
+
+            <label for="password">Password</label>
+            <input type="text" id="password" name="Password" placeholder="ehA81&a8!">
+
+            <label for="first_name">First name</label>
+            <input type="text" id="first_name" name="Fname" placeholder="Jane">
+
+            <label for="last_name">Last name</label>
+            <input type="text" id="last_name" name="Lname" placeholder="Doe">
+
+            <label for="address">Address</label>
+            <input type="text" id="address" name="Address" placeholder="123 Main St. Portland Oregon">
+
+            <input type="submit" value="Add">
+        </form>
+    </div>
+</div>
+<div id="tables">
+    <div id="table-container">
+        <table id="customer-table">
+            <thead>
+                <tr>
+                    {{#each data.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td>{{this.CustomerID}}</td>
+                    <td>{{this.Email}}</td>
+                    <td>{{this.Password}}</td>
+                    <td>{{this.Fname}}</td>
+                    <td>{{this.Lname}}</td>
+                    <td>{{this.Address}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<script src="./js/Customers.js"></script>
