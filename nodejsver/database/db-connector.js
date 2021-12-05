@@ -11,6 +11,10 @@ var pool = mysql.createPool({
     user            : 'cs340_evansdr',
     password        : '2582',
     database        : 'cs340_evansdr'
+    // host            : 'localhost',
+    // user            : 'root',
+    // password        : 'root',
+    // database        : 'cs340_evansdr'
 })
 
 // Export it for use in our applicaiton
