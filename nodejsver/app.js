@@ -37,9 +37,9 @@ app.get('/', function (req, res) {
 app.get('/Games', async function (req, res) {
   let query1 = "SELECT * FROM Games;"; // Define our query
 
-  let genreData = await dbSync.query("select * from genres")
-  let gameData = await dbSync.query("select * from games")
-  let ggData = await dbSync.query("select * from genres_games")
+  let genreData = await dbSync.query("select * from Genres")
+  let gameData = await dbSync.query("select * from Games")
+  let ggData = await dbSync.query("select * from Genres_Games")
 
   res.render('Games', {
     data: {
@@ -56,7 +56,7 @@ app.post('/update-game-form', function (req, res) {
   let data = req.body;
 
   // Create the query and run it on the database
-  const query1 = `update games set GameName = "${data.GameName}", Description = "${data.Description}", Price = "${data.Price}" where GameID = ${data.GameID}`;
+  const query1 = `update Games set GameName = "${data.GameName}", Description = "${data.Description}", Price = "${data.Price}" where GameID = ${data.GameID}`;
   db.query(query1, function (error, rows, fields) {
 
     // Check to see if there was an error
@@ -80,7 +80,7 @@ app.post('/delete-game-form', function (req, res) {
   let data = req.body;
 
   // Create the query and run it on the database
-  const query1 = `delete from games where GameID = ${data.GameID}`;
+  const query1 = `delete from Games where GameID = ${data.GameID}`;
   db.query(query1, function (error, rows, fields) {
 
     // Check to see if there was an error
@@ -122,9 +122,9 @@ app.get('/Genres', function (req, res) {
 }); // received back from the query
 
 app.get('/Reviews', async (req, res) => {
-  let customerData = await dbSync.query("select * from customers");
-  let gameData = await dbSync.query("select * from games");
-  let reviewData = await dbSync.query("select * from reviews");
+  let customerData = await dbSync.query("select * from Customers");
+  let gameData = await dbSync.query("select * from Games");
+  let reviewData = await dbSync.query("select * from Reviews");
 
   res.render('Reviews', {
     data: {
@@ -137,9 +137,9 @@ app.get('/Reviews', async (req, res) => {
 });
 
 app.get('/Sales', async (req, res) => {
-  let salesData = await dbSync.query("select * from sales");
-  let customerData = await dbSync.query("select * from customers");
-  let gameData = await dbSync.query("select * from games");
+  let salesData = await dbSync.query("select * from Sales");
+  let customerData = await dbSync.query("select * from Customers");
+  let gameData = await dbSync.query("select * from Games");
 
   res.render('Sales', {
     data: {
@@ -188,7 +188,7 @@ app.post('/insert-game-form', function (req, res) {
 
 app.post('/insert-review-form', function (req, res) {
   let data = req.body;
-  query1 = `INSERT INTO reviews (GameID, CustomerID, Rating, Comment)
+  query1 = `INSERT INTO Reviews (GameID, CustomerID, Rating, Comment)
               VALUES ('${data.GameID}', '${data.CustomerID}', '${data.Rating}', '${data.Comment}')`
   db.query(query1, function (error, rows, fields) {
     if (error) {
@@ -196,7 +196,7 @@ app.post('/insert-review-form', function (req, res) {
       res.sendStatus(400);
     } else {
       query2 = `SELECT *
-                  FROM reviews;`;
+                  FROM Reviews;`;
       db.query(query2, function (error, rows, fields) {
         if (error) {
           console.log(error);
@@ -212,7 +212,7 @@ app.post('/insert-review-form', function (req, res) {
 
 app.post('/update-review-form', function (req, res) {
   let data = req.body;
-  query1 = `UPDATE reviews
+  query1 = `UPDATE Reviews
             SET Rating = '${data.Rating}', Comment = '${data.Comment}'
             WHERE ReviewID = '${data.ReviewID}'`
   //console.log(query1);
@@ -222,7 +222,7 @@ app.post('/update-review-form', function (req, res) {
       res.sendStatus(400);
     } else {
       query2 = `SELECT *
-                FROM reviews;`;
+                FROM Reviews;`;
       db.query(query2, function (error, rows, fields) {
         if (error) {
           console.log(error);
@@ -238,7 +238,7 @@ app.post('/update-review-form', function (req, res) {
 
 app.post('/delete-review-form', function (req, res) {
   let data = req.body;
-  query1 = `DELETE FROM reviews
+  query1 = `DELETE FROM Reviews
             WHERE ReviewID = '${data.ReviewID}'`
   //console.log(query1);
   db.query(query1, function (error, rows, fields) {
@@ -247,7 +247,7 @@ app.post('/delete-review-form', function (req, res) {
       res.sendStatus(400);
     } else {
       query2 = `SELECT *
-                FROM reviews;`;
+                FROM Reviews;`;
       db.query(query2, function (error, rows, fields) {
         if (error) {
           console.log(error);
@@ -350,7 +350,7 @@ app.post('/insert-game-genre', function (req, res) {
   let data = req.body;
 
 
-  query1 = `INSERT INTO genres_games(GameID, GenreID) VALUES (${data.GameID}, ${data.GenreID})`
+  query1 = `INSERT INTO Genres_Games(GameID, GenreID) VALUES (${data.GameID}, ${data.GenreID})`
   //console.log(query1);
   db.query(query1, function (error, rows, fields) {
     if (error) {
