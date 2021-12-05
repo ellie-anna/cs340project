@@ -1,111 +1,98 @@
-body {
+body{
 
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: azure;
+    font-family:Arial, Helvetica, sans-serif;
+    background-color:azure;
 }
 
-#title {
+#title{
 
     display: inline-block;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 20px;
-    font-size: xx-large;
-
+    font-size:xx-large;
+    
 }
 
-header {
+header{
 
     background-color: #6DA34D;
 }
 
-.navitem {
+.navitem{
 
-
+    
     padding: 5px 5px 5px 5px;
     display: inline-block;
 
 }
 
-.navitem:hover {
+.navitem:hover{
 
-    background-color: #548687;
+    background-color:#548687;
 }
 
-#index-body {
+#index-body{
 
     padding-top: 30px;
 }
 
-.bodylink {
+.bodylink{
 
     padding: 10px 10px 10px 50px;
     display: block;
 }
 
-a {
+a{
     text-decoration: none;
 }
 
-a:link {
-    color: black;
+a:link{
+    color:black;
 }
 
-a:visited {
-    color: black;
+a:visited{
+    color:black;
 }
 
-a:hover {
-    color: #56445D;
+a:hover{
+    color:#56445D;
 }
 
-input {
-    display: block;
+input{
+    display:block;
 }
 
-#forms {
+#forms{
 
     width: 34vmax;
     float: left;
 
 }
 
-form {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-}
-
-
-#tables {
+#tables{
 
     width: 60vmax;
     float: left;
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-    text-align: center;
-    border-collapse: separate;
-    border-spacing: 10px;
-}
-
-.container {
+#container{
+    
     display: flex;
     width: 30vmax;
     background-color: white;
     margin: 5px;
-    margin-top: 10px;
-    padding: 15px 20px 15px 20px;
+    padding: 20px 20px 20px 20px;
     border-width: 2px;
     border-color: black;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px #8FBC94;
+    box-shadow: 2px 2px 5px  #8FBC94;
     flex-wrap: wrap;
 }
 
-#table-container {
+#table-container{
+
     display: inline-block;
     width: 55vmax;
     height: 35vmin;
@@ -115,53 +102,20 @@ table {
     border-width: 2px;
     border-color: black;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px #8FBC94;
+    box-shadow: 2px 2px 5px  #8FBC94;
+    
 }
 
-.action-label {
+.action-label{
+
     flex-basis: 100%;
-    font-weight: bold;
+
 }
 
-label {
+label{
+
     padding: 5px 5px 5px 5px;
 }
-
-input,
-select {
-    margin-top: .5rem;
-}
-
-input,
-select {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 5px 5px 5px 5px;
-
-}
-
-
-input[type=submit] {
-
-    background-color: #6DA34D;
-    color: white;
-    padding: 3px 10px 3px 10px;
-    border-radius: 10px;
-    border-width: 1px;
-    border-color: gray;
-    width: 10rem;
-    margin-left: 3px;
-    font-weight: bolder;
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-}
-
-input[type=submit]:hover {
-    opacity: 0.5;
-    transition: 0.2s ease-in-out;
-
-}
-
 
 /*Colors
 #6DA34D Bud Green
