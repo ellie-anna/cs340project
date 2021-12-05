@@ -19,13 +19,40 @@ app.use(express.static(path.join(__dirname, '/public')));
 PORT = 33489;                 // Set a port number at the top so it's easy to change in the future
 
 app.get('/', function (req, res) {
-    let sql;
-    let gameName = req.query.gameName;
-    if (gameName === undefined){
-        sql = `SELECT * FROM Games;`;
-    }else{
-        sql = `SELECT * FROM Games WHERE GameName LIKE "${gameName}%"`;
-    }
+    res.render('index');
+});
+
+app.get('/Customers', function (req, res) {
+  let query1 = "SELECT * FROM Customers;";               // Define our query
+
+        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+            res.render('Customers', {data: rows});                  // Render the index.hbs file, and also send the renderer
+        })
+});
+
+app.get('/Genres', function (req, res) {
+  res.render('Genres');
+});
+
+app.get('/Sales', function (req, res) {
+  res.render('Sales');
+});
+
+app.get('/Reviews', function (req, res) {
+  res.render('Reviews');
+});
+
+
+app.get('/Games', function (req, res) {
+
+  let sql;
+  let gameName = req.query.gameName;
+  if (gameName === undefined){
+      sql = `SELECT * FROM Games;`;
+  }else{
+      sql = `SELECT * FROM Games WHERE GameName LIKE "${gameName}%"`;
+  }
 
   queryAll(res,sql);
 });
@@ -130,9 +157,6 @@ app.post('/add-game-genre', function (req, res) {
   })
 });
 
-app.get('/', function (req, res) {
-
-})
 app.listen(PORT, function () {            // This is the basic syntax for what is called the 'listener' which receives incoming requests on the specified PORT.
   console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.')
 });
