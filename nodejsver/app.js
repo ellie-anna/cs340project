@@ -35,11 +35,11 @@ app.get('/', function (req, res) {
 });
 
 app.get('/Games', async function (req, res) {
-  let query1 = "SELECT * FROM Games;"; // Define our query
+  let query1 = `SELECT * FROM Games;`; // Define our query
 
-  let genreData = await dbSync.query("select * from Genres")
-  let gameData = await dbSync.query("select * from Games")
-  let ggData = await dbSync.query("select * from Genres_Games")
+  let genreData = await dbSync.query(`SELECT * FROM Genres`)
+  let gameData = await dbSync.query(`SELECT * FROM Games`)
+  let ggData = await dbSync.query(`SELECT * FROM Genres_Games`)
 
   res.render('Games', {
     data: {

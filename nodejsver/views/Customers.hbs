@@ -24,26 +24,30 @@
     </div>
 </div>
 
-<table id="customer-table">
-    <thead>
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-        </tr>
-    </thead>
-    <tbody>
-        {{#each data}}
-        <tr>
-            <td>{{this.CustomerID}}</td>
-            <td>{{this.Email}}</td>
-            <td>{{this.Password}}</td>
-            <td>{{this.Fname}}</td>
-            <td>{{this.Lname}}</td>
-            <td>{{this.Address}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+ <div id="tables">
+    <div id="table-container">
+        <table id="customer-table">
+            <thead>
+                <tr>
+                    {{#each data.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td>{{this.CustomerID}}</td>
+                    <td>{{this.Email}}</td>
+                    <td>{{this.Password}}</td>
+                    <td>{{this.Fname}}</td>
+                    <td>{{this.Lname}}</td>
+                    <td>{{this.Address}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

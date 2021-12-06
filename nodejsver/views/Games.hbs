@@ -108,7 +108,7 @@
                 <table id="games-table">
                     <thead>
                         <tr>
-                            {{#each data.[0]}}
+                            {{#each data.games.[0]}}
                             <th>
                                 {{@key}}
                             </th>
@@ -116,7 +116,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{#each data}}
+                        {{#each data.games}}
                         <tr>
                             <td>{{this.GameID}}</td>
                             <td>{{this.GameName}}</td>
@@ -132,7 +132,7 @@
                 <table id="game-genre-table">
                     <thead>
                         <tr>
-                            {{#each genreGameData.[0]}}
+                            {{#each data.gg.[0]}}
                             <th>
                                 {{@key}}
                             </th>
@@ -140,10 +140,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{#each genreGameData}}
+                        {{#each data.gg}}
                         <tr>
-                            <td>{{this.GameName}}</td>
-                            <td>{{this.GenreName}}</td>
+                            <td>{{this.GameID}}</td>
+                            <td>{{this.GenreID}}</td>
                         </tr>
                         {{/each}}
                     </tbody>

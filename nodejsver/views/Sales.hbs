@@ -1,0 +1,47 @@
+{{> header}}
+
+<div id="content">
+        <div id="forms">
+            <div id="container">
+                <label class="action-label" for="INSERT-sale"> Add a Sale </label>
+                <form id="INSERT-sale">
+                    <label for="sale_price">Price</label>
+                    <input type="text" id="sale_price" name="INSERT" placeholder="1.00">
+                    
+                    <label for="customer_id">Customer ID</label>
+                    <input type="text" id="customer_id" name="INSERT" placeholder="0">
+
+                    <label for="game_id">Game ID</label>
+                    <input type="text" id="game_id" name="INSERT" placeholder="0">
+
+                    <input type="submit" value="Add">
+                </form>
+            </div>
+        </div>
+    
+        <div id="tables">
+            <div id="table-container">
+                <table id="sales-table">
+                    <thead>
+                        <tr>
+                            {{#each data.sales.[0]}}
+                            <th>
+                                {{@key}}
+                            </th>
+                            {{/each}}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each data.sales}}
+                        <tr>
+                            <td>{{this.SaleID}}</td>
+                            <td>{{this.SalePrice}}</td>
+                            <td>{{this.CustomerID}}</td>
+                            <td>{{this.GameID}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
